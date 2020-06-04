@@ -10,7 +10,12 @@ app.get('/' , function(req,res){
     res.send("I am a bot");
 });
 
-
+app.get('/webhook/' , function(req, res){
+    if(req.query['hub.verify_token'] === "aradhanacool"){
+        res.send(req.query['hub.challenge']);
+    }
+    res.send("Wrong token");
+});
 
 
 app.listen(process.env.PORT || 5500, function(){
